@@ -54,7 +54,7 @@ body {
 
 .loading {
   border: 1px solid black;
-  background: url(../../public/img/background_loading.jpg) no-repeat;
+  background: url("../../public/img/background_loading.jpg") no-repeat;
   z-index: -1;
   animation: loading_paused 8s;
 }
@@ -87,7 +87,7 @@ body {
 }
 
 .refresh {
-  background: url(../../public/img/background.jpg) no-repeat;
+  background: url("../../public/img/background.jpg") no-repeat;
   background-size: cover;
   background-attachment: fixed;
   background-position: center;

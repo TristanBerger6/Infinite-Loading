@@ -19,7 +19,7 @@ body{
 
 .loading{
     @include debug();
-    background: url(../../public/img/background_loading.jpg) no-repeat;
+    background: url("../../public/img/background_loading.jpg") no-repeat;
     z-index: -1; // is under the main page, except during loading phase
     animation : loading_paused $loading-duration ;  
     
@@ -71,7 +71,7 @@ body{
 
 
 .refresh{
-    background: url(../../public/img/background.jpg) no-repeat; // main background
+    background: url("../../public/img/background.jpg") no-repeat; // main background
     background-size: cover ;
     background-attachment: fixed;
     background-position: center;
