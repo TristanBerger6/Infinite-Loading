@@ -1,0 +1,18 @@
+{
+  "name": "infinite_loading",
+  "version": "1.0.0",
+  "description": "Infinite_loading",
+  "main": "index.js",
+  "scripts": {
+    "sass": "sass --watch ./sass/main.scss:./public/css/style.css",
+    "prefix": "postcss public/css/style.css --use autoprefixer -d public/css/prefixed/"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "autoprefixer": "^9.0.0",
+    "postcss": "^8.3.8",
+    "postcss-cli": "^9.0.0",
+    "source-map-js": "^0.6.2"
+  }
+}

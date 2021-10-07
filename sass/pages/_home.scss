@@ -1,0 +1,189 @@
+$rotation-duration : 1000ms;
+$rotation-animation-duration : 2000ms;
+$rotation-count-iteration : 5;
+$loading-duration : 8s;
+
+body{
+    position: relative; // just to place the 2 child
+}
+
+.loading, .refresh{
+    position : absolute;
+    top:0;
+    width :100%;
+    height : 100vh; // height of the page
+    @include flex(center,center,row,nowrap); // center both
+}
+
+
+
+.loading{
+    @include debug();
+    background: url(../../public/img/background_loading.jpg) no-repeat;
+    z-index: -1; // is under the main page, except during loading phase
+    animation : loading_paused $loading-duration ;  
+    
+
+    
+    .logo{
+        margin : 50px auto;
+        width : 300px;
+        height : 300px;
+        padding : 2px;
+
+        &__icon{
+
+            
+            .shape1,.shape7{
+                 animation-delay: 0.17*$rotation-duration;
+            }
+             .shape2,.shape4{
+                 animation-delay: 0.32*$rotation-duration;
+             }
+            .shape5{
+                 animation-delay: 0.5*$rotation-duration ;
+            }
+            
+
+            &__item{
+                fill :white;
+                stroke: white;
+                stroke-width: 2px;
+                stroke-linejoin:round;
+                transform-origin: 50% 50%;
+                animation : loading_rotate $rotation-animation-duration linear;
+                animation-iteration-count: $rotation-count-iteration;
+                &:hover{
+                    animation-play-state: paused;
+                }
+            }
+
+        }
+
+    }
+   
+
+
+
+}
+
+
+
+
+.refresh{
+    background: url(../../public/img/background.jpg) no-repeat; // main background
+    background-size: cover ;
+    background-attachment: fixed;
+    background-position: center;
+    z-index:1; // above the loading page, except when the page is loading
+    opacity :0; // opacity become 1 after loading
+    animation : loading $loading-duration forwards;  
+    padding-bottom : 150px; // up the btn not to touch the moutain
+
+}
+
+.refresh__btn{
+
+    @include flex(center,center,row,nowrap);
+    position: relative; // to position its child
+    margin: 20px auto;
+    width: 200px;
+    height: 100px;
+  
+  
+   
+
+
+    a{
+        position: absolute; // larger than the button
+        top:-4;              // offset 4px each sides
+        left:-4;
+        width : calc(100% + 8px);
+        height : calc(100% + 8px);
+
+        display : inline-block;  // To center text
+        @include flex(center,center,row,nowrap);
+
+        
+        .outline{
+           
+            width : 100%;   // exact same size than parent a
+            height : 100%;
+            position: absolute;
+            top :0;
+            bottom: 0;
+            left :0;
+            right :0;
+            
+            
+            &:hover{
+                 .top{
+                
+                  stroke-dashoffset: -205%;
+                }
+                .bot{      
+                  stroke-dashoffset: -430%;    
+                }
+            }
+      
+            &__rectangle{
+               width : calc(100% - 4px) ;  // rectangle a bit smaller than parent
+               height : calc(100% - 4px);  // to have a stroke-width of 4
+               stroke-width: 4;
+               stroke-dasharray: 70% 330%; // only one dash
+               fill:none;
+               stroke: rgb(56,56,62);
+               transition: stroke-dashoffset 500ms ease-in-out;
+      
+               &.top{
+                  stroke-dashoffset: -30%; // starting point
+                  }
+               &.bot{
+                  stroke-dashoffset: -205%; // starting point
+                   }
+              }
+        }
+
+    }
+
+}
+
+
+
+
+
+@keyframes loading_rotate{
+    0%{
+        transform : rotateY(0deg);
+        opacity: 1;
+    }
+    25%{
+        transform : rotateY(90deg);
+        opacity: 0;
+    }
+    50%, 100%{     // half of the time doing nothing
+        transform : rotateY(180deg);
+        opacity: 1;
+    }
+}
+
+@keyframes loading { 
+    0%{ 
+        opacity :0;
+    }
+    90% {
+        opacity :0;
+    }
+    100%{
+        opacity :1;
+    }
+    
+}
+@keyframes loading_paused{
+    0%{ 
+        z-index: 2;
+    }
+    100%{
+        z-index :2;
+    }
+}

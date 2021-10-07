@@ -1,0 +1,31 @@
+*,
+*::after,
+*::before {
+    margin: 0;
+    padding: 0;
+    box-sizing: inherit;// elemnt inherit its box-sizing from its parent
+}
+
+
+body {
+    box-sizing: border-box; // padding + border included in width
+    font-size: 16px;  
+}
+
+ul{
+    list-style-type: none;
+}
+
+a{
+    text-decoration: none;
+    color : white;
+    font-size: 25px;
+    font-weight: bold;
+    letter-spacing: 2px;
+  
+}
+
+img{
+    max-width : 100%;
+    height : auto;
+}
